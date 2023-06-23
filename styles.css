@@ -1,6 +1,8 @@
 h1 {
 background:red
 }
+
+
 .paragraph1 {
 background:grey;
 font-size: 32pt;
@@ -17,7 +19,13 @@ padding-left: 150px;
 }
 
 .paragraph3 {
-font-weight: bold;
-font-size:28pt;
-font-family: Couries New;
+font-weight: normal;
+font-size:24pt;
+text-align: center;
+font-style: oblique;
+text-shadow: 2px 2px 4px rgba(34, 139, 34)
 }
+
+
+
+
