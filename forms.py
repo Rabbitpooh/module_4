@@ -1,24 +1,18 @@
-from django import forms
-from django.core.exceptions import ValidationError
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm
 
-from .models import Advertisement
+User = get_user_model()
 
 
-class AdvertisementForm(forms.ModelForm):
+class ExtendedUserCreationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['title'].widget.attrs['class'] = 'form-control form-control-lg'
-        self.fields['description'].widget.attrs['class'] = 'form-control form-control-lg'
-        self.fields['image'].widget.attrs['class'] = 'form-control form-control-lg'
-        self.fields['price'].widget.attrs['class'] = 'form-control form-control-lg'
-        self.fields['auction'].widget.attrs['class'] = 'form-check-input'
+        self.fields['username'].widget.attrs['class'] = 'form-control form-control-lg'
+        self.fields['password1'].widget.attrs['class'] = 'form-control form-control-lg'
+        self.fields['password2'].widget.attrs['class'] = 'form-control form-control-lg'
+        self.fields['first_name'].widget.attrs['class'] = 'form-control form-control-lg'
+        self.fields['last_name'].widget.attrs['class'] = 'form-control form-control-lg'
 
     class Meta:
-        model = Advertisement
-        fields = ("title", "description", "image", "price", "auction")
-
-    def clean_title(self):
-        title = self.cleaned_data['title']
-        if title.startswith('?'):
-            raise ValidationError('Заголовок не может начинаться с вопросительного знака.')
-        return title
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'password1', 'password2']
